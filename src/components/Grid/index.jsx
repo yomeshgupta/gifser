@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 
 class Grid extends Component {
 	render() {
-		<div>Grid will be here</div>;
+		const { gifs } = this.props;
+		console.log(gifs);
+
+		return <div>Grid will be here</div>;
 	}
 }
 
