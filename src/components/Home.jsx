@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import Searchbar from './Searchbar';
 import Grid from './Grid/index';
-import { SOURCE_API, API_KEY } from '../consts/consts';
+import { SOURCE_API, API_KEY, RESPONSE_LIMIT } from '../consts/consts';
 class Home extends Component {
 	state = {
 		query: '',
@@ -21,7 +21,8 @@ class Home extends Component {
 		url.search = new URLSearchParams({
 			api_key: API_KEY,
 			q: query,
-			offset
+			offset,
+			limit: RESPONSE_LIMIT
 		});
 
 		return fetch(url)
@@ -47,7 +48,7 @@ class Home extends Component {
 				totalPages,
 				query,
 				hasMore,
-				offset: offset === 0 ? 26 : offset + 1,
+				offset: offset === 0 ? 19 : offset + 1,
 				isLoading: false
 			});
 		}

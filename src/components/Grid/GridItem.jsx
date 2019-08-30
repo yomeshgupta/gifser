@@ -1,17 +1,37 @@
 import React, { Component } from 'react';
-import { url } from 'inspector';
 
 class GridItem extends Component {
+	state = {
+		paused: false
+	};
+
+	togglePaused = () => {
+		this.setState(state => ({
+			paused: !state.paused
+		}));
+	};
+
+	renderImage(url, display) {
+		return <div className="image" style={{ backgroundImage: `url(${url})`, display }}></div>;
+	}
+
 	render() {
-		const { gif } = this.props;
+		const { gif, classNames } = this.props;
+		const { paused } = this.state;
 		const {
-			images: { original = {}, hd = {} }
+			images: { original = {}, hd = {}, original_still = {} }
 		} = gif;
 
 		return (
-			<div className="item">
-				<div className="image" style={{ background: url(original.url) }}></div>
-				<div className="controls">Buttons</div>
+			<div className={`item ${classNames}`}>
+				{this.renderImage(original_still.url, paused === true ? 'block' : 'none')}
+				{this.renderImage(original.webp, paused === true ? 'none' : 'block')}
+				<div className="controls">
+					<button>Play</button>
+					<button>Pause</button>
+					<button>Download as Video</button>
+					<button>Download as Gif</button>
+				</div>
 			</div>
 		);
 	}

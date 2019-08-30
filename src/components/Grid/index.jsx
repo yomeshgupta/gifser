@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import GridItem from './GridItem';
+import { generateRandomNumber } from '../../utils';
 class Grid extends Component {
 	render() {
 		const { gifs } = this.props;
@@ -7,10 +9,10 @@ class Grid extends Component {
 		if (!gifs.length) return <div>Seems like kind of empty here!</div>;
 
 		return (
-			<div className="items">
-				{gifs.map(gif => (
-					<GridItem gif={gif} key={gif.id} />
-				))}
+			<div className="grid">
+				{gifs.map(gif => {
+					return <GridItem gif={gif} key={gif.id} classNames={`grid-item-${generateRandomNumber(3)}`} />;
+				})}
 			</div>
 		);
 	}
