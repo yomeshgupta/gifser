@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import Searchbar from './Searchbar';
 import Grid from './Grid/index';
-import { SOURCE_API, API_KEY, RESPONSE_LIMIT, DEFAULT_TAB } from '../../consts/consts';
+import { SOURCE_API, API_KEY, RESPONSE_LIMIT, DEFAULT_TAB, GIF_SEARCH_CONTROLS } from '../../consts/consts';
 
 class GifSearch extends Component {
 	state = {
@@ -68,7 +68,7 @@ class GifSearch extends Component {
 		return (
 			<Fragment>
 				<Searchbar query={query} onSearch={this.searchProcessing} />
-				{isLoading ? <div>Loading...</div> : <Grid items={results} />}
+				{isLoading ? <div>Loading...</div> : <Grid items={results} controls={GIF_SEARCH_CONTROLS} />}
 			</Fragment>
 		);
 	}

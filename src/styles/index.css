@@ -15,6 +15,31 @@ body {
 	background-image: url('/public/assets/images/bg.png');
 }
 
+/** ICONS START **/
+.icon {
+	display: inline-block;
+	fill: currentColor;
+	margin-top: -0.2em;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	overflow: hidden;
+}
+.icon--fill {
+	background-color: currentColor;
+	fill: #fff;
+}
+.icon--round {
+	border-radius: 4px;
+}
+.icon--circle {
+	border-radius: 50%;
+}
+.icon--border {
+	border: 1px solid currentColor;
+}
+/** ICONS END **/
+
 /** Header Start **/
 header {
 	width: 100%;
@@ -100,13 +125,24 @@ input[type='submit']:hover {
 	animation-play-state: paused;
 }
 .item .controls {
-	padding: 10px 5px;
+	padding: 5px 0px;
 	position: absolute;
-	bottom: 10px;
+	top: 5px;
+	right: 5px;
 	display: none;
 }
 .item:hover .controls {
 	display: block;
+}
+.controls button {
+	margin-right: 10px;
+	border: 0;
+	background: #2c3e50;
+	cursor: pointer;
+}
+.controls button,
+.controls button a {
+	color: #fff;
 }
 /** Grid End **/
 
@@ -115,16 +151,22 @@ input[type='submit']:hover {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #3498db;
 }
 .tabs li.tab {
 	list-style: none;
 	padding-left: 0px;
-	color: #000;
-	margin-right: 20px;
+	padding-bottom: 10px;
+	font-size: 18px;
+	color: #2c3e50;
+	margin-right: 25px;
 	cursor: pointer;
 }
+.tabs li.tab:hover {
+	color: #3498db;
+}
 .tabs li.active {
-	border-bottom: 2px solid #ccc;
+	font-weight: bold;
+	border-bottom: 2px solid #3498db;
 }
 /** Tabs End **/
