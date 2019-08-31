@@ -1,4 +1,5 @@
 const SOURCE_API = 'http://api.giphy.com/v1/gifs/search';
+const TRENDING_SOURCE_API = 'http://api.giphy.com/v1/gifs/trending';
 const API_KEY = 'F2yTfZvLf3OWJqgBV0UtMBTp0R0CeS8D';
 const RESPONSE_LIMIT = 18;
 const TABS = [
@@ -29,4 +30,4 @@ const GIF_SEARCH_CONTROLS = {
 	download: true
 };
 
-export { SOURCE_API, API_KEY, RESPONSE_LIMIT, TABS, DEFAULT_TAB, TAB_KEYS, GIF_SEARCH_CONTROLS };
+export { SOURCE_API, TRENDING_SOURCE_API, API_KEY, RESPONSE_LIMIT, TABS, DEFAULT_TAB, TAB_KEYS, GIF_SEARCH_CONTROLS };
