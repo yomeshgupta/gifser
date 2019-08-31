@@ -173,9 +173,9 @@ input[type='submit']:hover {
 	color: #fff;
 	background: #2c3e50;
 	text-align: center;
+	cursor: pointer;
 }
 #load-more:hover {
-	cursor: pointer;
 	background: #3498db;
 }
 /** Grid End **/
@@ -220,3 +220,24 @@ input[type='submit']:hover {
 	font-size: 22px;
 }
 /** Empty End **/
+
+@media only screen and (max-width: 480px) {
+	.content {
+		width: 90%;
+	}
+	.grid {
+		grid-template-columns: 1fr;
+	}
+	.grid .item {
+		grid-column-end: span 1;
+	}
+	.item {
+		position: relative;
+	}
+	.item .controls {
+		display: inline-block !important;
+	}
+	.empty-state img {
+		width: 70%;
+	}
+}

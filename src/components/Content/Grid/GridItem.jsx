@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Proptypes from 'prop-types';
 
 class GridItem extends Component {
 	state = {
@@ -75,5 +76,15 @@ class GridItem extends Component {
 		);
 	}
 }
+
+GridItem.props = {
+	item: Proptypes.node.isRequired,
+	controls: Proptypes.object.isRequired,
+	classNames: Proptypes.string
+};
+
+GridItem.defaultProps = {
+	classNames: ''
+};
 
 export default GridItem;
