@@ -50,13 +50,15 @@ body {
 
 /** Header Start **/
 header {
-	width: 100%;
-	height: 70px;
+	height: 80px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-transform: uppercase;
-	font-size: 24px;
+	padding: 10px 0px;
+}
+header img {
+	max-height: 90%;
 }
 /** Header End **/
 

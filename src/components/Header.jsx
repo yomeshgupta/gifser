@@ -1,7 +1,11 @@
 import React from 'react';
 
 const Header = () => {
-	return <header>GIFSER</header>;
+	return (
+		<header>
+			<img src="/public/assets/images/logo.png" alt="GIFSER" />
+		</header>
+	);
 };
 
 export default Header;
