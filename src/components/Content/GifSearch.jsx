@@ -2,6 +2,9 @@ import React, { Component, Fragment } from 'react';
 
 import Searchbar from './Searchbar';
 import Grid from './Grid/index';
+import Empty from './shared/Empty';
+import Error from './shared/Error';
+import Loader from './shared/Loader';
 import { fetchGifs } from '../../utils';
 import { SOURCE_API, GIF_SEARCH_CONTROLS, RESPONSE_LIMIT } from '../../consts/consts';
 
@@ -65,8 +68,19 @@ class GifSearch extends Component {
 		});
 	};
 
+	renderContent() {
+		const { isLoading, isError, results, hasMore } = this.state;
+
+		if (isLoading) return <Loader />;
+		else if (isError) return <Error />;
+		else if (!results.length)
+			return <Empty message="Seems kind of empty here! Try searching/changing your query!" />;
+
+		return <Grid items={results} controls={GIF_SEARCH_CONTROLS} fetchMore={this.fetchMore} hasMore={hasMore} />;
+	}
+
 	render() {
-		const { results, query, isLoading, hasMore } = this.state;
+		const { query } = this.state;
 
 		return (
 			<Fragment>
@@ -75,11 +89,7 @@ class GifSearch extends Component {
 					With great power there must also come -- great responsibility. This can't be more true than here!
 					You have the power to search, play and download all the GIFs in the world. Wisely use it, my friend.
 				</p>
-				{isLoading ? (
-					<div>Loading...</div>
-				) : (
-					<Grid items={results} controls={GIF_SEARCH_CONTROLS} fetchMore={this.fetchMore} hasMore={hasMore} />
-				)}
+				{this.renderContent()}
 			</Fragment>
 		);
 	}

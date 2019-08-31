@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react';
 
 import GridItem from './Grid/GridItem';
+import Empty from './shared/Empty';
+import Error from './shared/Error';
+import Loader from './shared/Loader';
 import { fetchGifs } from '../../utils';
-import { RANDOM_SOURCE_API, GIF_SEARCH_CONTROLS, RESPONSE_LIMIT } from '../../consts/consts';
+import { RANDOM_SOURCE_API, GIF_SEARCH_CONTROLS } from '../../consts/consts';
 
 class Random extends Component {
 	state = {
@@ -41,9 +44,9 @@ class Random extends Component {
 	renderContent = () => {
 		const { isLoading, isError, result } = this.state;
 
-		if (isLoading) return <div>Loading...</div>;
-		else if (isError) return <div>Error...</div>;
-		else if (!result) return <div>Empty...</div>;
+		if (isLoading) return <Loader />;
+		else if (isError) return <Error />;
+		else if (!result) return <Empty message="Seems kind of empty here!" />;
 
 		return (
 			<Fragment>

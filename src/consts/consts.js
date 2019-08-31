@@ -2,7 +2,7 @@ const SOURCE_API = 'http://api.giphy.com/v1/gifs/search';
 const TRENDING_SOURCE_API = 'http://api.giphy.com/v1/gifs/trending';
 const RANDOM_SOURCE_API = 'http://api.giphy.com/v1/gifs/random';
 const API_KEY = 'F2yTfZvLf3OWJqgBV0UtMBTp0R0CeS8D';
-const RESPONSE_LIMIT = 18;
+const RESPONSE_LIMIT = 9;
 const TABS = [
 	{
 		id: 1,

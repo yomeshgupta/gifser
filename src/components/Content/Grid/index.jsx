@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 
+import Empty from '../shared/Empty';
 import GridItem from './GridItem';
 
 const Grid = ({ items, controls = null, fetchMore = null, hasMore = false }) => {
-	if (!items.length) return <div>Seems like kind of empty here!</div>;
+	if (!items.length) return <Empty />;
 
 	return (
 		<Fragment>

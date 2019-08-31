@@ -1,13 +1,14 @@
 import React, { Component, Fragment } from 'react';
 
 import Grid from './Grid/index';
+import Loader from './shared/Loader';
 import { fetchGifs } from '../../utils';
 import { TRENDING_SOURCE_API, GIF_SEARCH_CONTROLS, RESPONSE_LIMIT } from '../../consts/consts';
 
 class Trending extends Component {
 	state = {
 		isLoading: true,
-		isError: true,
+		isError: false,
 		hasMore: true,
 		totalPages: null,
 		offset: 0,
@@ -76,22 +77,15 @@ class Trending extends Component {
 
 		return (
 			<Fragment>
-				{isLoading ? (
-					<div>Loading...</div>
-				) : (
-					<Fragment>
-						<p className="sub-text">
-							So, you are here. Want to see the trend? This section will always give you the latest and
-							greatest GIFs in the world. Get ready to be blown away, my friend.
-						</p>
+				<p className="sub-text">
+					So, you are here. Want to see the trend? This section will always give you the latest and greatest
+					GIFs in the world. Get ready to be blown away, my friend.
+				</p>
 
-						<Grid
-							items={results}
-							controls={GIF_SEARCH_CONTROLS}
-							fetchMore={this.fetchMore}
-							hasMore={hasMore}
-						/>
-					</Fragment>
+				{isLoading ? (
+					<Loader />
+				) : (
+					<Grid items={results} controls={GIF_SEARCH_CONTROLS} fetchMore={this.fetchMore} hasMore={hasMore} />
 				)}
 			</Fragment>
 		);
