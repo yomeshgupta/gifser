@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import Grid from './Grid/index';
 import Loader from './shared/Loader';
+import Error from './shared/Error';
 import { fetchGifs } from '../../utils';
 import { TRENDING_SOURCE_API, GIF_SEARCH_CONTROLS, RESPONSE_LIMIT } from '../../consts/consts';
 
