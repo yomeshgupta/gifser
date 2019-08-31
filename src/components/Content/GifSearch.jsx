@@ -16,11 +16,7 @@ class GifSearch extends Component {
 		offset: 0
 	};
 
-	searchProcessing = query => {
-		this.setState({ isLoading: true });
-
-		const { offset } = this.state;
-
+	fetchGifsWrapper = ({ query, offset, loadMore = false }) => {
 		return fetchGifs({
 			data: {
 				q: query,
@@ -33,11 +29,11 @@ class GifSearch extends Component {
 				const { total_count, count } = pagination;
 
 				const totalPages = parseInt(total_count / count);
-				const hasMore = !!(offset < total_count);
+				const hasMore = !!(count + offset < total_count);
 
 				this.setState(state => {
 					return {
-						results: data,
+						results: loadMore ? state.results.concat(data) : data,
 						totalPages,
 						query,
 						hasMore,
@@ -49,35 +45,28 @@ class GifSearch extends Component {
 			.catch(() => this.setState({ isLoading: false, isError: true }));
 	};
 
+	searchProcessing = query => {
+		this.setState({ isLoading: true });
+		const { offset } = this.state;
+
+		this.fetchGifsWrapper({
+			query,
+			offset
+		});
+	};
+
 	fetchMore = () => {
 		const { query, offset } = this.state;
 
-		return fetchGifs({
-			data: {
-				q: query,
-				offset
-			},
-			API_URL: SOURCE_API
-		})
-			.then(response => {
-				const { data, pagination } = response;
-				const { total_count, count } = pagination;
-
-				const hasMore = !!(count + offset < total_count);
-
-				this.setState(state => {
-					return {
-						results: state.results.concat(data),
-						offset: state.offset + RESPONSE_LIMIT + 1,
-						hasMore
-					};
-				});
-			})
-			.catch(() => this.setState({ isError: true }));
+		this.fetchGifsWrapper({
+			query,
+			offset,
+			loadMore: true
+		});
 	};
 
 	render() {
-		const { results, query, isLoading } = this.state;
+		const { results, query, isLoading, hasMore } = this.state;
 
 		return (
 			<Fragment>
@@ -89,7 +78,7 @@ class GifSearch extends Component {
 				{isLoading ? (
 					<div>Loading...</div>
 				) : (
-					<Grid items={results} controls={GIF_SEARCH_CONTROLS} fetchMore={this.fetchMore} />
+					<Grid items={results} controls={GIF_SEARCH_CONTROLS} fetchMore={this.fetchMore} hasMore={hasMore} />
 				)}
 			</Fragment>
 		);

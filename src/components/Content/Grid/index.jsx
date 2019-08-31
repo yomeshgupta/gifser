@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 import GridItem from './GridItem';
 
-const Grid = ({ items, controls = null, fetchMore }) => {
+const Grid = ({ items, controls = null, fetchMore = null, hasMore = false }) => {
 	if (!items.length) return <div>Seems like kind of empty here!</div>;
 
 	return (
@@ -12,7 +12,7 @@ const Grid = ({ items, controls = null, fetchMore }) => {
 					return <GridItem item={item} key={`${item.id}-${item.slug}`} controls={controls} />;
 				})}
 			</div>
-			{fetchMore ? (
+			{fetchMore && hasMore ? (
 				<div className="row">
 					<button onClick={fetchMore} id="load-more">
 						Load More

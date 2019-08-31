@@ -72,7 +72,7 @@ class Trending extends Component {
 	};
 
 	render() {
-		const { isLoading, results } = this.state;
+		const { isLoading, results, hasMore } = this.state;
 
 		return (
 			<Fragment>
@@ -85,7 +85,12 @@ class Trending extends Component {
 							greatest GIFs in the world. Get ready to be blown away, my friend.
 						</p>
 
-						<Grid items={results} controls={GIF_SEARCH_CONTROLS} fetchMore={this.fetchMore} />
+						<Grid
+							items={results}
+							controls={GIF_SEARCH_CONTROLS}
+							fetchMore={this.fetchMore}
+							hasMore={hasMore}
+						/>
 					</Fragment>
 				)}
 			</Fragment>
