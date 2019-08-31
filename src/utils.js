@@ -7,7 +7,7 @@ const generateRandomNumber = limit => {
 const fetchGifs = params => {
 	const { data, API_URL } = params;
 
-	const url = new URL(API_URL);
+	const url = new URL(`${window.location.protocol}//${API_URL}`);
 
 	url.search = new URLSearchParams({
 		api_key: API_KEY,
