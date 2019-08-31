@@ -41,7 +41,8 @@ class GifSearch extends Component {
 						query,
 						hasMore,
 						offset: state.offset === 0 ? RESPONSE_LIMIT : state.offset + RESPONSE_LIMIT + 1,
-						isLoading: false
+						isLoading: false,
+						isError: false
 					};
 				});
 			})

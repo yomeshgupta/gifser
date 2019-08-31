@@ -16,39 +16,13 @@ class Trending extends Component {
 	};
 
 	componentDidMount() {
-		const { isLoading, offset } = this.state;
-		if (isLoading) {
-			return fetchGifs({
-				data: {
-					offset
-				},
-				API_URL: TRENDING_SOURCE_API
-			})
-				.then(response => {
-					const { offset } = this.state;
-					const { data, pagination } = response;
-					const { total_count, count } = pagination;
-
-					const totalPages = parseInt(total_count / count);
-					const hasMore = !!(offset < total_count);
-
-					this.setState(state => {
-						return {
-							results: data,
-							totalPages,
-							hasMore,
-							offset: state.offset === 0 ? RESPONSE_LIMIT : state.offset + RESPONSE_LIMIT + 1,
-							isLoading: false
-						};
-					});
-				})
-				.catch(() => this.setState({ isError: true, isLoading: false }));
-		}
+		const { offset } = this.state;
+		this.fetchGifsWrapper({
+			offset
+		});
 	}
 
-	fetchMore = () => {
-		const { offset } = this.state;
-
+	fetchGifsWrapper = ({ offset, loadMore = false }) => {
 		return fetchGifs({
 			data: {
 				offset
@@ -59,34 +33,49 @@ class Trending extends Component {
 				const { data, pagination } = response;
 				const { total_count, count } = pagination;
 
+				const totalPages = parseInt(total_count / count);
 				const hasMore = !!(count + offset < total_count);
 
 				this.setState(state => {
 					return {
-						results: state.results.concat(data),
-						offset: state.offset + RESPONSE_LIMIT + 1,
-						hasMore
+						results: loadMore ? state.results.concat(data) : data,
+						totalPages,
+						hasMore,
+						offset: state.offset === 0 ? RESPONSE_LIMIT : state.offset + RESPONSE_LIMIT + 1,
+						isLoading: false,
+						isError: false
 					};
 				});
 			})
-			.catch(() => this.setState({ isError: true }));
+			.catch(() => this.setState({ isLoading: false, isError: true }));
 	};
 
-	render() {
-		const { isLoading, results, hasMore } = this.state;
+	fetchMore = () => {
+		const { offset } = this.state;
 
+		this.fetchGifsWrapper({
+			offset,
+			loadMore: true
+		});
+	};
+
+	renderContent() {
+		const { isLoading, isError, results, hasMore } = this.state;
+
+		if (isLoading) return <Loader />;
+		else if (isError) return <Error />;
+
+		return <Grid items={results} controls={GIF_SEARCH_CONTROLS} fetchMore={this.fetchMore} hasMore={hasMore} />;
+	}
+
+	render() {
 		return (
 			<Fragment>
 				<p className="sub-text">
 					So, you are here. Want to see the trend? This section will always give you the latest and greatest
 					GIFs in the world. Get ready to be blown away, my friend.
 				</p>
-
-				{isLoading ? (
-					<Loader />
-				) : (
-					<Grid items={results} controls={GIF_SEARCH_CONTROLS} fetchMore={this.fetchMore} hasMore={hasMore} />
-				)}
+				{this.renderContent()}
 			</Fragment>
 		);
 	}
