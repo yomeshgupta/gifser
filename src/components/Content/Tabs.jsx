@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { TABS } from '../../consts/consts';
 
@@ -17,5 +18,14 @@ function Tabs({ activeView, onClick }) {
 		</ul>
 	);
 }
+
+Tabs.propsType = {
+	activeView: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+	onClick: PropTypes.func
+};
+
+Tabs.defaultProps = {
+	onClick: () => {}
+};
 
 export default Tabs;
