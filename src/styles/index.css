@@ -15,22 +15,40 @@ body {
 	background-image: url('/public/assets/images/bg.png');
 }
 
+/** Header Start **/
+header {
+	width: 100%;
+	height: 70px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-transform: uppercase;
+	font-size: 24px;
+}
+/** Header End **/
+
+/** Content Start **/
+.content-wrapper {
+	width: 100%;
+	padding: 20px 0px;
+}
+.content {
+	width: 80%;
+	margin: 0 auto;
+}
+/** Content End **/
+
 /** Searchbar Start **/
 form {
 	width: 100%;
 	max-height: 70px;
-	padding: 10px;
-	background: red;
 	display: flex;
 	justify-content: space-between;
-	position: sticky;
-	top: 0;
-	left: 0;
-	z-index: 999;
+	margin: 20px 0px;
 }
 input[type='text'],
 input[type='submit'] {
-	padding: 10px;
+	padding: 15px;
 	border: 0px;
 	max-height: 60px;
 }
@@ -40,8 +58,13 @@ input[type='text'] {
 input[type='submit'] {
 	flex: 1;
 	margin-left: 10px;
-	background: blue;
+	color: #fff;
+	background: #2c3e50;
 	text-align: center;
+}
+input[type='submit']:hover {
+	cursor: pointer;
+	background: #3498db;
 }
 /** Searchbar End **/
 
@@ -51,7 +74,7 @@ input[type='submit'] {
 	grid-template-columns: repeat(auto-fill, minmax(200px, 3fr));
 	grid-auto-flow: dense;
 	grid-gap: 10px;
-	width: 80%;
+	width: 100%;
 	margin: 30px auto;
 	position: relative;
 }
@@ -86,3 +109,22 @@ input[type='submit'] {
 	display: block;
 }
 /** Grid End **/
+
+/** Tabs Start **/
+.tabs {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	border-bottom: 1px solid #ccc;
+}
+.tabs li.tab {
+	list-style: none;
+	padding-left: 0px;
+	color: #000;
+	margin-right: 20px;
+	cursor: pointer;
+}
+.tabs li.active {
+	border-bottom: 2px solid #ccc;
+}
+/** Tabs End **/
