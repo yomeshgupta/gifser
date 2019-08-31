@@ -12,11 +12,13 @@ const Grid = ({ items, controls = null, fetchMore }) => {
 					return <GridItem item={item} key={`${item.id}-${item.slug}`} controls={controls} />;
 				})}
 			</div>
-			<div className="row">
-				<button onClick={fetchMore} id="load-more">
-					Load More
-				</button>
-			</div>
+			{fetchMore ? (
+				<div className="row">
+					<button onClick={fetchMore} id="load-more">
+						Load More
+					</button>
+				</div>
+			) : null}
 		</Fragment>
 	);
 };

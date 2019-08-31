@@ -139,6 +139,10 @@ input[type='submit']:hover {
 	background-position: center center;
 	animation-play-state: paused;
 }
+#random-section .item .image {
+	min-height: 400px;
+	background-size: contain;
+}
 .item .controls {
 	padding: 5px 0px;
 	position: absolute;

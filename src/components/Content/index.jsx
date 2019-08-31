@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Tabs from './Tabs';
 import GifSearch from './GifSearch';
 import Trending from './Trending';
+import Random from './Random';
 import { DEFAULT_TAB, TAB_KEYS } from '../../consts/consts';
 
 class Content extends Component {
