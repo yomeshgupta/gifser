@@ -13,7 +13,7 @@ class GridItem extends Component {
 	};
 
 	renderImage(url, display) {
-		return <div className="image" style={{ backgroundImage: `url(${url})`, display }}></div>;
+		return <div className="image" style={{ backgroundImage: `url(${url})`, display }} role="img"></div>;
 	}
 
 	renderControls(item, controls) {
@@ -22,16 +22,16 @@ class GridItem extends Component {
 			images: { original = {} }
 		} = item;
 		return (
-			<div className="controls">
+			<section className="controls">
 				{controls.play ? (
 					paused ? (
-						<button onClick={this.togglePaused} title="Play Gif">
+						<button onClick={this.togglePaused} title="Play Gif" aria-label="Play Gif">
 							<svg viewBox="0 0 32 32" className="icon icon-play" viewBox="0 0 32 32" aria-hidden="true">
 								<path d="M10.968 23V9l12.762 7-12.762 7z" />
 							</svg>
 						</button>
 					) : (
-						<button onClick={this.togglePaused} title="Pause Gif">
+						<button onClick={this.togglePaused} title="Pause Gif" aria-label="Pause Gif">
 							<svg viewBox="0 0 32 32" className="icon icon-pause" viewBox="0 0 32 32" aria-hidden="true">
 								<path d="M18.432 7.5h4.547v17h-4.547zM9.022 7.5h4.545v17H9.022z" />
 							</svg>
@@ -40,7 +40,7 @@ class GridItem extends Component {
 				) : null}
 				{controls.download ? (
 					<button title="Download Gif">
-						<a href={original.url} target="_blank">
+						<a href={original.url} target="_blank" title="Link to download gif" aria-label="Download Gif">
 							<svg
 								viewBox="0 0 32 32"
 								className="icon icon-arrow-bottom"
@@ -56,7 +56,7 @@ class GridItem extends Component {
 						</a>
 					</button>
 				) : null}
-			</div>
+			</section>
 		);
 	}
 

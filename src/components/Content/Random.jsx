@@ -51,24 +51,24 @@ class Random extends Component {
 		return (
 			<Fragment>
 				<GridItem item={result} controls={GIF_SEARCH_CONTROLS} />
-				<div className="row">
-					<button onClick={this.refreshGif} id="load-more">
+				<section className="row">
+					<button onClick={this.refreshGif} id="load-more" aria-label="Refresh">
 						Refresh
 					</button>
-				</div>
+				</section>
 			</Fragment>
 		);
 	};
 
 	render() {
 		return (
-			<div id="random-section">
+			<section id="random-section">
 				<p className="sub-text">
 					Ohh! You don't want to be here. This is the Dark Side, young Luke. This is the section which will
 					always give you the most random available GIF in the world. Tread carefully.
 				</p>
 				{this.renderContent()}
-			</div>
+			</section>
 		);
 	}
 }

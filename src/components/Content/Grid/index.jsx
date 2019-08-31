@@ -9,17 +9,17 @@ const Grid = ({ items, controls, fetchMore, hasMore }) => {
 
 	return (
 		<Fragment>
-			<div className="grid">
+			<section className="grid" role="grid">
 				{items.map(item => {
 					return <GridItem item={item} key={`${item.id}-${item.slug}`} controls={controls} />;
 				})}
-			</div>
+			</section>
 			{fetchMore && hasMore ? (
-				<div className="row">
-					<button onClick={fetchMore} id="load-more">
+				<section className="row">
+					<button onClick={fetchMore} id="load-more" aria-label="Load More">
 						Load More
 					</button>
-				</div>
+				</section>
 			) : null}
 		</Fragment>
 	);

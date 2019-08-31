@@ -35,12 +35,12 @@ class Content extends Component {
 		const { currentTab } = this.state;
 
 		return (
-			<div className="content-wrapper">
-				<div className="content">
+			<section className="content-wrapper">
+				<section className="content">
 					<Tabs activeView={currentTab} onClick={this.selectTab} />
 					{this.renderTabContent()}
-				</div>
-			</div>
+				</section>
+			</section>
 		);
 	}
 }

@@ -5,12 +5,14 @@ import { TABS } from '../../consts/consts';
 
 function Tabs({ activeView, onClick }) {
 	return (
-		<ul className="tabs">
+		<ul className="tabs" role="navigation" aria-label="primary">
 			{TABS.map(tab => (
 				<li
 					key={tab.id}
 					className={`tab ${activeView === tab.value ? 'active' : ''}`}
 					onClick={() => onClick(tab.value)}
+					role="tab"
+					aria-selected={`${activeView === tab.value ? 'true' : 'false'}`}
 				>
 					{tab.name}
 				</li>

@@ -24,15 +24,16 @@ class Searchbar extends Component {
 		const { query } = this.state;
 
 		return (
-			<form onSubmit={this.searchWrapper}>
+			<form onSubmit={this.searchWrapper} role="form">
 				<input
 					type="text"
 					title="Enter Search Query"
 					placeholder="What needs to be searched?"
 					onChange={this.updateQuery}
 					value={query}
+					aria-label={query}
 				/>
-				<input type="submit" value="Search" />
+				<input type="submit" value="Search" aria-label="Search" />
 			</form>
 		);
 	}
