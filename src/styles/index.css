@@ -76,6 +76,7 @@ header img {
 	margin: 30px auto;
 	text-align: justify;
 	color: #3e3e3e;
+	font-size: 18px;
 }
 /** Content End **/
 
@@ -238,6 +239,12 @@ input[type='submit']:hover {
 		display: inline-block !important;
 	}
 	.empty-state img {
-		width: 70%;
+		width: 60%;
+	}
+	.loader img {
+		width: 10%;
+	}
+	.sub-text {
+		font-size: 16px;
 	}
 }
