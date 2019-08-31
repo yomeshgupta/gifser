@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import GridItem from './GridItem';
 
-const Grid = ({ items, controls = null }) => {
+const Grid = ({ items, controls = null, fetchMore }) => {
 	if (!items.length) return <div>Seems like kind of empty here!</div>;
 
 	return (
-		<div className="grid">
-			{items.map(item => {
-				return <GridItem item={item} key={item.id} controls={controls} />;
-			})}
-		</div>
+		<Fragment>
+			<div className="grid">
+				{items.map(item => {
+					return <GridItem item={item} key={`${item.id}-${item.slug}`} controls={controls} />;
+				})}
+			</div>
+			<div className="row">
+				<button onClick={fetchMore} id="load-more">
+					Load More
+				</button>
+			</div>
+		</Fragment>
 	);
 };
 
