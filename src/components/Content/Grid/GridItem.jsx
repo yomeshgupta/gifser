@@ -12,6 +12,11 @@ class GridItem extends Component {
 		}));
 	};
 
+	findSmallest = (a, b) => {
+		if (a.value < b.value) return a.key;
+		return b.key;
+	};
+
 	renderImage(url, display) {
 		const { renderImage } = this.props;
 		return renderImage ? (
@@ -96,13 +101,18 @@ class GridItem extends Component {
 		const { item, classNames, controls, renderImage } = this.props;
 		const { paused } = this.state;
 		const {
-			images: { original = {}, hd = {}, original_still = {} }
+			images: { original = {}, original_still = {} }
 		} = item;
+		const still = item.images['480w_still'];
+		const use480 = !!(Math.abs(still.width - original_still.width) < 15);
+		const { size, webp_size } = original;
+		const key = this.findSmallest({ value: size, key: 'url' }, { value: webp_size, key: 'webp' });
+		const url = original[key];
 
 		return (
 			<section className={`item ${classNames} ${renderImage ? 'overlay-item' : ''}`}>
-				{this.renderImage(original_still.url, paused === true ? 'block' : 'none')}
-				{this.renderImage(original.webp, paused === true ? 'none' : 'block')}
+				{this.renderImage(use480 ? still.url : original_still.url, paused === true ? 'block' : 'none')}
+				{this.renderImage(url, paused === true ? 'none' : 'block')}
 				{this.renderControls(item, controls)}
 			</section>
 		);
