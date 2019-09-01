@@ -43,6 +43,7 @@ class Random extends Component {
 
 	renderContent = () => {
 		const { isLoading, isError, result } = this.state;
+		const { toggleOverlay } = this.props;
 
 		if (isLoading) return <Loader />;
 		else if (isError) return <Error />;
@@ -50,7 +51,7 @@ class Random extends Component {
 
 		return (
 			<Fragment>
-				<GridItem item={result} controls={GIF_SEARCH_CONTROLS} />
+				<GridItem item={result} controls={GIF_SEARCH_CONTROLS} toggleOverlay={toggleOverlay} />
 				<section className="row">
 					<button onClick={this.refreshGif} id="load-more" aria-label="Refresh">
 						Refresh

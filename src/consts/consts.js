@@ -28,7 +28,8 @@ const TAB_KEYS = {
 const DEFAULT_TAB = 1;
 const GIF_SEARCH_CONTROLS = {
 	play: true,
-	download: true
+	download: true,
+	zoom: true
 };
 
 export {

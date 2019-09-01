@@ -62,11 +62,20 @@ class Trending extends Component {
 
 	renderContent() {
 		const { isLoading, isError, results, hasMore } = this.state;
+		const { toggleOverlay } = this.props;
 
 		if (isLoading) return <Loader />;
 		else if (isError) return <Error />;
 
-		return <Grid items={results} controls={GIF_SEARCH_CONTROLS} fetchMore={this.fetchMore} hasMore={hasMore} />;
+		return (
+			<Grid
+				items={results}
+				controls={GIF_SEARCH_CONTROLS}
+				fetchMore={this.fetchMore}
+				hasMore={hasMore}
+				toggleOverlay={toggleOverlay}
+			/>
+		);
 	}
 
 	render() {

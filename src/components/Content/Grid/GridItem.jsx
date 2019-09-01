@@ -13,7 +13,12 @@ class GridItem extends Component {
 	};
 
 	renderImage(url, display) {
-		return <div className="image" style={{ backgroundImage: `url(${url})`, display }} role="img"></div>;
+		const { renderImage } = this.props;
+		return renderImage ? (
+			<img src={url} style={{ display }} alt="Gif" role="img" />
+		) : (
+			<div className="image" style={{ backgroundImage: `url(${url})`, display }} role="img"></div>
+		);
 	}
 
 	renderControls(item, controls) {
@@ -21,8 +26,35 @@ class GridItem extends Component {
 		const {
 			images: { original = {} }
 		} = item;
+		const { toggleOverlay } = this.props;
 		return (
 			<section className="controls">
+				{controls.zoom && toggleOverlay ? (
+					<button
+						onClick={() =>
+							toggleOverlay(
+								<GridItem
+									item={item}
+									key={`${item.id}-${item.slug}`}
+									controls={controls}
+									toggleOverlay={null}
+									renderImage={true}
+								/>
+							)
+						}
+						title="Zoom Gif"
+						aria-label="Zoom Gif"
+					>
+						<svg
+							viewBox="0 0 32 32"
+							className="icon icon-search-plus"
+							viewBox="0 0 32 32"
+							aria-hidden="true"
+						>
+							<path d="M27 24.57l-5.647-5.648a8.892 8.892 0 0 0 1.522-4.984C22.875 9.01 18.867 5 13.938 5 9.01 5 5 9.01 5 13.938c0 4.929 4.01 8.938 8.938 8.938a8.887 8.887 0 0 0 4.984-1.522L24.568 27 27 24.57zm-13.062-4.445a6.194 6.194 0 0 1-6.188-6.188 6.195 6.195 0 0 1 6.188-6.188 6.195 6.195 0 0 1 6.188 6.188 6.195 6.195 0 0 1-6.188 6.188zm3.755-7.217h-2.726v-2.725h-2.062v2.725H10.18v2.062h2.725v2.725h2.062V14.97h2.726v-2.062z" />
+						</svg>
+					</button>
+				) : null}
 				{controls.play ? (
 					paused ? (
 						<button onClick={this.togglePaused} title="Play Gif" aria-label="Play Gif">
@@ -80,11 +112,14 @@ class GridItem extends Component {
 GridItem.props = {
 	item: Proptypes.node.isRequired,
 	controls: Proptypes.object.isRequired,
-	classNames: Proptypes.string
+	classNames: Proptypes.string,
+	toggleOverlay: Proptypes.func,
+	renderImage: Proptypes.bool
 };
 
 GridItem.defaultProps = {
-	classNames: ''
+	classNames: '',
+	renderImage: false
 };
 
 export default GridItem;

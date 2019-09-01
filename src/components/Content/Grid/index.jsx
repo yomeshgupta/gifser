@@ -4,14 +4,21 @@ import PropTypes from 'prop-types';
 import Empty from '../shared/Empty';
 import GridItem from './GridItem';
 
-const Grid = ({ items, controls, fetchMore, hasMore }) => {
+const Grid = ({ items, controls, fetchMore, hasMore, toggleOverlay }) => {
 	if (!items.length) return <Empty />;
 
 	return (
 		<Fragment>
 			<section className="grid" role="grid">
 				{items.map(item => {
-					return <GridItem item={item} key={`${item.id}-${item.slug}`} controls={controls} />;
+					return (
+						<GridItem
+							item={item}
+							key={`${item.id}-${item.slug}`}
+							controls={controls}
+							toggleOverlay={toggleOverlay}
+						/>
+					);
 				})}
 			</section>
 			{fetchMore && hasMore ? (
