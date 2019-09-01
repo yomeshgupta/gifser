@@ -93,18 +93,18 @@ class GridItem extends Component {
 	}
 
 	render() {
-		const { item, classNames, controls } = this.props;
+		const { item, classNames, controls, renderImage } = this.props;
 		const { paused } = this.state;
 		const {
 			images: { original = {}, hd = {}, original_still = {} }
 		} = item;
 
 		return (
-			<div className={`item ${classNames}`}>
+			<section className={`item ${classNames} ${renderImage ? 'overlay-item' : ''}`}>
 				{this.renderImage(original_still.url, paused === true ? 'block' : 'none')}
 				{this.renderImage(original.webp, paused === true ? 'none' : 'block')}
 				{this.renderControls(item, controls)}
-			</div>
+			</section>
 		);
 	}
 }
