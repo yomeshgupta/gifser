@@ -222,7 +222,7 @@ input[type='submit']:hover {
 }
 /** Empty End **/
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 770px) {
 	.content {
 		width: 90%;
 	}
@@ -239,12 +239,22 @@ input[type='submit']:hover {
 		display: inline-block !important;
 	}
 	.empty-state img {
-		width: 60%;
+		width: 50%;
 	}
 	.loader img {
 		width: 10%;
 	}
+}
+
+@media only screen and (max-width: 480px) {
+	header img {
+		max-height: 70%;
+	}
 	.sub-text {
+		font-size: 16px;
+	}
+	.tabs li.tab,
+	.empty-state h2 {
 		font-size: 16px;
 	}
 }
