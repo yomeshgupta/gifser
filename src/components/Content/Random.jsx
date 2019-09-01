@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import Proptypes from 'prop-types';
 
 import GridItem from './Grid/GridItem';
 import Empty from './shared/Empty';
@@ -73,5 +74,9 @@ class Random extends Component {
 		);
 	}
 }
+
+Random.props = {
+	toggleOverlay: Proptypes.func.isRequired
+};
 
 export default Random;

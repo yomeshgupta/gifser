@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import Proptypes from 'prop-types';
 
 import Grid from './Grid/index';
 import Loader from './shared/Loader';
@@ -90,5 +91,9 @@ class Trending extends Component {
 		);
 	}
 }
+
+Trending.props = {
+	toggleOverlay: Proptypes.func.isRequired
+};
 
 export default Trending;

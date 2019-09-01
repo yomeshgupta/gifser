@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import Proptypes from 'prop-types';
 
 import Searchbar from './Searchbar';
 import Grid from './Grid/index';
@@ -104,5 +105,9 @@ class GifSearch extends Component {
 		);
 	}
 }
+
+GifSearch.props = {
+	toggleOverlay: Proptypes.func.isRequired
+};
 
 export default GifSearch;
